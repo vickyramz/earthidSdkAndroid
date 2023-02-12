@@ -3,8 +3,6 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
-        maven { url "https://cdn.veriff.me/android/" } //make sure to add this before other repos
     }
 }
 dependencyResolutionManagement {
@@ -12,10 +10,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
-        maven { url "https://cdn.veriff.me/android/" } //make sure to add this before other repos
-
+        maven { url "https://cdn.veriff.me/android/" }
     }
 }
-rootProject.name = "earthidSdk"
+rootProject.name = "androidSdkNew"
 include ':app'
+include ':earthidLibService'
