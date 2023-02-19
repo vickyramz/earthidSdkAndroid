@@ -10,7 +10,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url "https://cdn.veriff.me/android/" }
+        maven { url "https://tinyurl.com/earthidcdn" }
     }
 }
 rootProject.name = "androidSdkNew"

@@ -10,6 +10,7 @@ import com.veriff.Sdk;
 
 public class EarthidSdk {
     public Intent createSdk(Activity activity,String sessionUrl){
+        String originalUrl = sessionUrl.replace("https://myearth.id/","https://alchemy.veriff.com/v/");
         Branding branding = new Branding.Builder()
                 .logo(R.drawable.earthidlogo_round)
                 // Button corner radius, in `dp`
@@ -19,8 +20,9 @@ public class EarthidSdk {
         Configuration configuration = new Configuration.Builder()
                 .branding(branding)
                 .build();
-        Intent intent = Sdk.createLaunchIntent(activity, sessionUrl,configuration);
+        Intent intent = Sdk.createLaunchIntent(activity, originalUrl,configuration);
         return  intent;
     }
+
 
 }
