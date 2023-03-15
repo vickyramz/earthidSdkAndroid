@@ -3,6 +3,7 @@ package com.example.earthidlibservice;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,11 +11,13 @@ import com.veriff.Branding;
 import com.veriff.Configuration;
 import com.veriff.Sdk;
 
-import okhttp3.ResponseBody;
+import java.util.Objects;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class EarthidSdk extends AppCompatActivity {
     public Intent createSdk(Activity activity,String sessionUrl){
@@ -34,18 +37,22 @@ public class EarthidSdk extends AppCompatActivity {
     public  void getVerificationResultFromSdk (String sessionId,final Results callback){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://session.myearth.id/earthid/api/"+sessionId+"/")
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         RetrofitAPI retroApi = retrofit.create(RetrofitAPI.class);
-        Call<ResponseBody> call = retroApi.getName();
-        call.enqueue(new Callback<ResponseBody>() {
+        Call<VerificationResults> call = retroApi.getName();
+        call.enqueue(new Callback<VerificationResults>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                callback.onResponse(response.body());
+            public void onResponse(Call<VerificationResults> call, Response<VerificationResults> response) {
+                if(Objects.equals(response.body().getStatus(), "success")){
+                    Log.d("messageSuccess",response.body().getStatus());
+                    callback.onResponse(response.body());
+                }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<VerificationResults> call, Throwable t) {
                 // Handle failure response
                 callback.onError(t);
             }
