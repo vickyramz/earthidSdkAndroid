@@ -7,6 +7,7 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.recaptcha.VerificationResult;
 import com.veriff.Branding;
 import com.veriff.Configuration;
 import com.veriff.Sdk;
@@ -47,6 +48,7 @@ public class EarthidSdk extends AppCompatActivity {
             public void onResponse(Call<VerificationResults> call, Response<VerificationResults> response) {
                 if(Objects.equals(response.body().getStatus(), "success")){
                     Log.d("messageSuccess",response.body().getStatus());
+                    Log.d("messageSuccess",response.body().getVerification().getPerson().getFirstName());
                     callback.onResponse(response.body());
                 }
             }

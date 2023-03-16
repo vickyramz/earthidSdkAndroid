@@ -20,9 +20,9 @@ public class MainActivity extends AppCompatActivity {
         Button myButton = (Button) findViewById(R.id.my_button);
         myButton.setOnClickListener(view -> {
             EarthidSdk a =new EarthidSdk();
-            Intent i =   a.createSdk(activity,"https://myearth.id/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uX2lkIjoiYTA5YjNhYTItMDgyMC00MzBhLThmNzQtYWI4YzAxNDk1MWIyIiwiaWlkIjoiOTIyNDhiNzctNzc3Ni00NDkzLTgxZjQtYTk0ODlmNWYyNDljIiwiaWF0IjoxNjc4ODk3MDQ5fQ.HBJbGPU4YKEfD2ijJoeJTpivwWvLOWOJyL2oPg762YI");
+            Intent i =   a.createSdk(activity,"https://myearth.id/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzZXNzaW9uX2lkIjoiNDM2NmM4MTQtMGYzYS00OGY0LThlOWQtM2U1MGQwZjFiOGE4IiwiaWlkIjoiOTIyNDhiNzctNzc3Ni00NDkzLTgxZjQtYTk0ODlmNWYyNDljIiwiaWF0IjoxNjc4OTQ5ODk4fQ.p33ErUXm9HND8G_07s7kbbPrmglYp70PZSdLX5KTYUY");
             startActivityForResult(i,1);
-//            a.getVerificationResultFromSdk("d3537725-b984-4be3-8c36-b18f17c1bd6c", new Results() {
+//            a.getVerificationResultFromSdk("2dfbfa15-0319-4671-b164-cf36032fb7d7", new Results() {
 //                @Override
 //                public void onResponse(VerificationResults response) {
 //                    //receive a response which contains details
@@ -39,10 +39,11 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //this will execute after you submit the session
         if (resultCode == -1) {
             EarthidSdk a =new EarthidSdk();
             //put your sessionId here
-            a.getVerificationResultFromSdk("d3537725-b984-4be3-8c36-b18f17c1bd6c", new Results() {
+            a.getVerificationResultFromSdk("4366c814-0f3a-48f4-8e9d-3e50d0f1b8a8", new Results() {
                 @Override
                 public void onResponse(VerificationResults response) {
                     //receive a response which contains details
